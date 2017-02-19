@@ -238,7 +238,7 @@ gce_ssh_download <- function(instance,
   on.exit({
     if (file.exists(dest)) unlink(dest, recursive = TRUE)
     file.rename(local_tempfile, dest)
-    unlink(local_tempdir, recursive = TRUE)
+    # unlink(local_tempdir, recursive = TRUE)
   })
 
   external_ip <- gce_get_external_ip(instance, verbose = FALSE)
