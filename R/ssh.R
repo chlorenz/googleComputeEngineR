@@ -232,6 +232,7 @@ gce_ssh_download <- function(instance,
 
   dir.create(local_tempdir)
   cat(local_tempdir)
+  print(local_tempdir)
 
   # Rename the downloaded files when we exit
   on.exit({
