@@ -215,7 +215,7 @@ gce_ssh_download <- function(instance,
   }
 
   # A temp dir for the downloaded file(s)
-  local_tempdir <- gsub("\\\\", "/", tempfile("download", local_dir))
+  local_tempdir <- tempfile("download", local_dir)
   local_tempfile <- file.path(local_tempdir, basename(remote))
 
   if (need_rename) {
@@ -231,6 +231,7 @@ gce_ssh_download <- function(instance,
   }
 
   dir.create(local_tempdir)
+  cat(local_tempdir)
 
   # Rename the downloaded files when we exit
   on.exit({
