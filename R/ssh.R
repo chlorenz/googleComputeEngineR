@@ -214,7 +214,7 @@ gce_ssh_download <- function(instance,
   }
 
   # A temp dir for the downloaded file(s)
-  local_tempdir <- tempfile("download", local_dir)
+  local_tempdir <- file.path(local_dir, paste0("download", idempotency()))
   local_tempfile <- file.path(local_tempdir, basename(remote))
 
   if (need_rename) {
@@ -236,7 +236,7 @@ gce_ssh_download <- function(instance,
   on.exit({
     if (file.exists(dest)) unlink(dest, recursive = TRUE)
     file.rename(local_tempfile, dest)
-    unlink(local_tempdir, recursive = TRUE)
+    # unlink(local_tempdir, recursive = TRUE)
   })
   
   ## original that works on local unix based systems
