@@ -132,7 +132,9 @@ gce_ssh <- function(instance,
     
     do_system(instance, cmd, wait = wait)
     gce_ssh_download(instance, temp_remote, temp_local)
-
+    
+    cat(temp_local, "\n")
+    print(temp_local)
     out <- readLines(temp_local, warn = FALSE)
     
   } else {
@@ -234,6 +236,9 @@ gce_ssh_download <- function(instance,
   dir.create(local_tempdir)
   # Rename the downloaded files when we exit
   on.exit({
+    print(paste0("dest: ", dest))
+    print(paste0("local_tempfile: ", local_tempfile))
+    print(paste0("locel_tempdir: ", local_tempdir))
     if (file.exists(dest)) unlink(dest, recursive = TRUE)
     file.rename(local_tempfile, dest)
     # unlink(local_tempdir, recursive = TRUE)
