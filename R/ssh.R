@@ -258,7 +258,7 @@ gce_ssh_download <- function(instance,
     cmd <- paste0(
       "ssh ", ssh_options(instance),
       " ", username, "@", external_ip, " ",
-      sprintf("'cd %s && tar cz %s'", dirname(remote), basename(remote)),
+      sprintf("'cat %s%s'", dirname(remote), basename(remote)),
       " > ",
       shQuote(local_tempfile)
     )
