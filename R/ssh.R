@@ -218,6 +218,8 @@ gce_ssh_download <- function(instance,
   # A temp dir for the downloaded file(s)
   local_tempdir <- file.path(local_dir, paste0("download", idempotency()))
   local_tempfile <- file.path(local_tempdir, basename(remote))
+  
+  local_tempfile <- gsub("/", "\\\\", local_tempfile)
 
   if (need_rename) {
     # Rename to local name
@@ -265,8 +267,8 @@ gce_ssh_download <- function(instance,
       " ", username, "@", external_ip, " ",
       sprintf("'cat %s/%s'", dirname(remote), basename(remote)),
       " > ",
-      # shQuote(local_tempfile)
-      "\"", local_tempfile, "\""
+      shQuote(local_tempfile)
+      # "\"", local_tempfile, "\""
     )
     print(cmd)
     cat(cmd)
