@@ -266,7 +266,7 @@ gce_ssh_download <- function(instance,
       sprintf("'cat %s/%s'", dirname(remote), basename(remote)),
       " > ",
       # shQuote(local_tempfile)
-      "'", local_tempfile, "'"
+      "\"", local_tempfile, "\""
     )
     print(cmd)
     cat(cmd)
