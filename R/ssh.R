@@ -268,6 +268,8 @@ gce_ssh_download <- function(instance,
       # shQuote(local_tempfile)
       "'local_tempfile'"
     )
+    print(cmd)
+    cat(cmd)
   }
 
   do_system(instance, cmd, wait = wait)
