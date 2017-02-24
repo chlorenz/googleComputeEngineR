@@ -294,7 +294,8 @@ do_system <- function(instance,
   myMessage(cmd, level = 2)
   
   # status <- system(cmd, wait = wait)
-  status <- shell(cmd, wait = wait)
+  # status <- shell(cmd, wait = wait)
+  status <- system2(cmd, wait = wait)
   if (status != 0) {
     stop("ssh failed\n", cmd, call. = FALSE)
   }
